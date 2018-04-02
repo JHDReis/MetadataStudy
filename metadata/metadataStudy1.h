@@ -7,7 +7,7 @@
 
 /*
  * https://www.codeproject.com/Articles/3743/A-gentle-introduction-to-Template-Metaprogramming
- *
+ * https://monoinfinito.wordpress.com/series/introduction-to-c-template-metaprogramming/
  * */
 
 
@@ -28,11 +28,43 @@ public:
     enum{RESULT = B0+B1+B2+B3+B4+B5+B6+B7};
 };
 
-
+// ---------------------------------
+// Factorials
+// ---------------------------------
 template< int i >
 class FACTOR{
 public:
-    enum {RESULT = i * FACTOR<i-1>::RESULT};
+    enum {
+        RESULT = i * FACTOR<i-1>::RESULT
+    };
+};
+
+//Specialization and end:
+template<>
+class FACTOR< 1 >{
+public:
+    enum {RESULT = 1};
+};
+
+// ---------------------------------
+//   Fibonacci
+// ---------------------------------
+template<unsigned long i>
+class FIBONACCI {
+public:
+    enum { RESULT = FIBONACCI<i-1>::RESULT + FIBONACCI<i-2>::RESULT};
+};
+
+template<>
+class FIBONACCI<0> {
+public:
+    enum { RESULT = 0};
+};
+
+template<>
+class FIBONACCI<1> {
+public:
+    enum { RESULT = 1};
 };
 
 
