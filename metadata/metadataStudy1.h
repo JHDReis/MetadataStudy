@@ -68,5 +68,74 @@ public:
 };
 
 
+//Fractions
+template <int N, int D> struct Frak {
+    static const long Num = N;
+    static const long Den = D;
+};
+
+template <int N, typename X> struct ScalarMultiplication {
+    //static const long Num = N * X::Num;
+    //static const long Den = N * X::Den;
+     typedef Frak<N*X::Num, N*X::Den> result;
+};
+
+//Simplification
+template <int X, int Y> struct MCD {
+    static const long result = MCD<Y, X % Y>::result;
+};
+
+//partial specialization
+template <int X> struct MCD<X, 0> {
+    static const long result = X;
+};
+
+
+//simple(fraction) = fraction / mcd(fraction)
+template <class F> struct Simpl {
+    static const long mcd = MCD<F::Num, F::Den>::result;
+    typedef Frak< F::Num / mcd, F::Den / mcd > result;
+    //static const long new_num = F::Num / mcd;
+    //static const long new_den = F::Den / mcd;
+    //typedef Frak<new_num, new_den> New_Frak;
+};
+
+
+template <typename X1, typename Y1> struct SameBase {
+    typedef typename ScalarMultiplication< Y1::Den, X1>::result X;
+    typedef typename ScalarMultiplication< X1::Den, Y1>::result Y;
+};
+
+
+template <typename X, typename Y> struct Sum {
+    typedef SameBase<X, Y> B;
+    static const long Num = B::X::Num + B::Y::Num;
+    static const long Den = B::Y::Den; // == B::X::Den
+    typedef typename Simpl< Frak<Num, Den> >::result result;
+};
+
+
+//Calculating the total result of the factorial e:
+// e = S(1/n!) = 1/0! + 1/1! + 1/2! + ...
+
+template <int N> struct E {
+    static const long Den = FACTOR<N>::RESULT;
+    typedef Frak< 1, Den > term;
+    typedef typename E<N-1>::result next_term;
+    typedef typename Sum< term, next_term >::result result;
+};
+
+
+template <> struct E<0> {
+    typedef Frak<1, 1> result;
+};
+
+
+
+
+
+
+
+
 
 #endif //METADATASTUDY_METADATASTUDY1_H
