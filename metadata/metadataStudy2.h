@@ -30,6 +30,17 @@ List: [ Head, Tail]
  // is either a list or the NULL element
 List: [ Head, Tail]
 Tail: List | Nil
+
+
+Rules:
+
+1. We can use template to define a template class, defining a new type based on a number instead of another type 😉;
+
+2. We can’t “store” a value in a type… unless we store it as a static value, that is;
+
+3. Using a convention for defining result holding variable names is very useful, as there are no interfaces and more
+   than once we’ll be using a result from an unknown class.
+
  */
 
 //
