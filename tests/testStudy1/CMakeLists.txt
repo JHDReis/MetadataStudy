@@ -1,6 +1,7 @@
 set(gtest_SOURCE_DIR lib/googletest/googletest)
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+include_directories(../../metadata)
 
 add_executable(run_testStudy1Test unitTest1.cpp unitTest2.cpp metadataStudyUnitTest1.cpp metadataStudy3UnitTest.cpp)
 
