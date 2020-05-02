@@ -3,11 +3,16 @@ project(MetadataStudy)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# include the cmake modules directory
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH})
+
+add_subdirectory(metadata)
+add_subdirectory(CPlusPlusTemplates)
+add_subdirectory(tests)
+
+
 add_executable(metadata_run main.cpp)
 
-include_directories(src)
+link_libraries(metadata_run metadataLib)
 
-#add_subdirectory(src)
-#add_subdirectory(tests)
 
-#target_link_libraries(fibonacci_run Fibonacci)
