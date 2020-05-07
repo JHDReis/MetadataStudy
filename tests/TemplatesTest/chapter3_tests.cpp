@@ -4,12 +4,12 @@
 
 #include "gtest/gtest.h"
 #include "../../CPlusPlusTemplates/Chapter3.h"
-
+#include "Chapter3.h"
 
 
 TEST(Chapter3, intStack)
 {
-    Stack<int> intStack;
+    chapter3::Stack<int> intStack;
 
     intStack.push(7);
 
@@ -18,7 +18,7 @@ TEST(Chapter3, intStack)
 
 TEST(Chapter3, stringStack)
 {
-    Stack<std::string> intStack;
+    chapter3::Stack<std::string> intStack;
 
     intStack.push("seven");
 
@@ -27,7 +27,7 @@ TEST(Chapter3, stringStack)
 
 TEST(Chapter3, stringStack_empty)
 {
-    Stack<std::string> intStack;
+    chapter3::Stack<std::string> intStack;
 
     intStack.push("seven");
 
@@ -40,12 +40,12 @@ TEST(Chapter3, stringStack_empty)
 
 TEST(Chapter3, stringStack_CopyConstructor)
 {
-    Stack<std::string> intStack;
+    chapter3::Stack<std::string> intStack;
     intStack.push("seven");
 
     ASSERT_EQ(intStack.top(),"seven");
 
-    Stack a(intStack);
+    chapter3::Stack a(intStack);
 
     ASSERT_EQ(a.top(), intStack.top());
 }

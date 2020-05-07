@@ -9,4 +9,6 @@ add_library(${PROJECT_NAME}
         Chapter2.h
         Chapter3.h
         Chapter2.cpp
-        Chapter3.cpp)
+        Chapter3.cpp
+        Chapter4.h
+        )

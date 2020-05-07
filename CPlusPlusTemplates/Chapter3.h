@@ -9,31 +9,47 @@
 #include <mutex>
 #include <deque>
 
-template <typename T>
-class Stack {
-public:
-    Stack()= default;
-    Stack(const Stack<T>& stack) : _elems(stack._elems) {} //copy constructor
-    Stack<T>& operator= (const Stack<T>& stack); //copy assigment
 
-    void push(const T& elem);
-    void pop();
-    T top() const;
-    bool empty() const;
+namespace chapter3
+{
+    template <typename T>
+    class Stack {
+    public:
+        Stack()= default;
+        Stack(const Stack<T>& stack) : _elems(stack._elems) {} //copy constructor
+        Stack<T>& operator= (const Stack<T>& stack); //copy assigment
 
-private:
-    std::vector<T> _elems;
-    std::mutex _lock;
-};
+        void push(const T& elem);
+        void pop();
+        T top() const;
+        bool empty() const;
+
+    private:
+        std::__1::vector<T> _elems;
+        std::mutex _lock;
+    };
+
+    template<>
+    class Stack<std::string> {
+    public:
+        void push(const std::string& elem);
+        void pop();
+        std::string top() const;
+        bool empty() const;
+
+    private:
+        std::__1::deque<std::string> _elems;
+    };
+}
 
 template<typename T>
-void Stack<T>::push(const T &elem) {
+void chapter3::Stack<T>::push(const T &elem) {
     std::lock_guard<std::mutex> lockGuard(_lock);
     _elems.push_back(elem);
 }
 
 template<typename T>
-void Stack<T>::pop() {
+void chapter3::Stack<T>::pop() {
     std::lock_guard<std::mutex> lockGuard(_lock);
 
     if(_elems.empty())
@@ -42,7 +58,7 @@ void Stack<T>::pop() {
 }
 
 template<typename T>
-T Stack<T>::top() const {
+T chapter3::Stack<T>::top() const {
 
     if(_elems.empty())
         throw std::out_of_range("Stack<>::top(): empty stack");
@@ -50,47 +66,35 @@ T Stack<T>::top() const {
 }
 
 template<typename T>
-bool Stack<T>::empty() const {
+bool chapter3::Stack<T>::empty() const {
     return _elems.empty();
 }
 
 template<typename T>
-Stack<T>& Stack<T>::operator=(const Stack<T> &stack) {
+chapter3::Stack<T>& chapter3::Stack<T>::operator=(const chapter3::Stack<T> &stack) {
     return *this;
 }
 
 
 /// ------- Specialization -------
 
-template<>
-class Stack<std::string> {
-public:
-    void push(const std::string& elem);
-    void pop();
-    std::string top() const;
-    bool empty() const;
-
-private:
-    std::deque<std::string> _elems;
-};
-
-void Stack<std::string>::push(const std::string &elem) {
+void chapter3::Stack<std::string>::push(const std::string &elem) {
     _elems.push_back(elem);
 }
 
-void Stack<std::string>::pop() {
+void chapter3::Stack<std::string>::pop() {
     if(_elems.empty())
         throw std::out_of_range("Stack<std::string>::pop(): empty stack");
     _elems.pop_back();
 }
 
-std::string Stack<std::string>::top() const {
+std::string chapter3::Stack<std::string>::top() const {
     if(_elems.empty())
         throw std::out_of_range("Stack<std::string>::top(): empty stack");
     return _elems.back();
 }
 
-bool Stack<std::string>::empty() const {
+bool chapter3::Stack<std::string>::empty() const {
     return _elems.empty();
 }
 
