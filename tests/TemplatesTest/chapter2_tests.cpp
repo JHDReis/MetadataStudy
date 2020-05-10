@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 #include "../../CPlusPlusTemplates/Chapter2.h"
 
-TEST(Template, testit)
+TEST(Chapter2, testit)
 {
     int a = 0;
     int b = 1;
@@ -15,7 +15,7 @@ TEST(Template, testit)
     ASSERT_TRUE(m == b);
 }
 
-TEST(Template, test_strings)
+TEST(Chapter2, test_strings)
 {
     auto a = "1234";
     auto b = "12345";
@@ -25,7 +25,7 @@ TEST(Template, test_strings)
     ASSERT_TRUE(m == b);
 }
 
-TEST(Template, testit2)
+TEST(Chapter2, testit2)
 {
     auto a = 0;
     auto b = 1;
