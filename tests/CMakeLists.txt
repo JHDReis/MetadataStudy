@@ -32,5 +32,8 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
     include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
+include(CTest)
 add_subdirectory(testStudy1)
 add_subdirectory(TemplatesTest)
+add_test(NAME AllTestsInMetadata COMMAND run_metadata_test)
+add_test(NAME AllTestsInTemplates COMMAND run_testStudy1Test)

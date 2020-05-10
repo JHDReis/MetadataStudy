@@ -52,19 +52,19 @@ public:
 template<unsigned long i>
 class FIBONACCI {
 public:
-    enum { RESULT = FIBONACCI<i-1>::RESULT + FIBONACCI<i-2>::RESULT};
+    enum : unsigned long { RESULT = FIBONACCI<i-1>::RESULT + FIBONACCI<i-2>::RESULT};
 };
 
 template<>
 class FIBONACCI<0> {
 public:
-    enum { RESULT = 0};
+    enum : unsigned long { RESULT = 0};
 };
 
 template<>
 class FIBONACCI<1> {
 public:
-    enum { RESULT = 1};
+    enum : unsigned long { RESULT = 1};
 };
 
 
