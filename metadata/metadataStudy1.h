@@ -5,6 +5,7 @@
 #ifndef METADATASTUDY_METADATASTUDY1_H
 #define METADATASTUDY_METADATASTUDY1_H
 
+#include <cstdint>
 /*
  * https://www.codeproject.com/Articles/3743/A-gentle-introduction-to-Template-Metaprogramming
  * https://monoinfinito.wordpress.com/series/introduction-to-c-template-metaprogramming/
@@ -49,22 +50,21 @@ public:
 // ---------------------------------
 //   Fibonacci
 // ---------------------------------
-template<unsigned long i>
-class FIBONACCI {
-public:
-    enum { RESULT = FIBONACCI<i-1>::RESULT + FIBONACCI<i-2>::RESULT};
+template<uint64_t n>
+struct fibonacci
+{
+    static constexpr uint64_t value = fibonacci<n-1>::value + fibonacci<n-2>::value;
 };
 
 template<>
-class FIBONACCI<0> {
-public:
-    enum { RESULT = 0};
+struct fibonacci<0>
+{
+    static constexpr int value = 0;
 };
-
 template<>
-class FIBONACCI<1> {
-public:
-    enum { RESULT = 1};
+struct fibonacci<1>
+{
+    static constexpr int value = 1;
 };
 
 

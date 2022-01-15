@@ -25,7 +25,7 @@ namespace chapter3
         bool empty() const;
 
     private:
-        std::__1::vector<T> _elems;
+        std::vector<T> _elems;
         std::mutex _lock;
     };
 
@@ -38,7 +38,7 @@ namespace chapter3
         bool empty() const;
 
     private:
-        std::__1::deque<std::string> _elems;
+        std::deque<std::string> _elems;
     };
 }
 
