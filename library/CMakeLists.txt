@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(library SHARED
         include/parameter_class.h
-        parameter_class.cpp)
+        parameter_class.cpp include/helpers.h)
 
 set_target_properties(library PROPERTIES SOVERSION 1)
 
